@@ -9,7 +9,7 @@ C = u.cursor()
 C.execute("""CREATE TABLE TEST (
     Tên text,
     Toán text,
-    TH text
+    TH text,
     AV text
     )""")
 
@@ -19,28 +19,23 @@ TH = "Tin Học"
 AN = "Anh văn"
 
 DB = [
-       ('Long', 'Lam', 'Anh'),
-       ('8', '9', '7'),
-       ('9', '8', '7'),
-       ('8','7','10'),
+       ('Long','8', '9', '7'),
+       ('Lam','9', '8', '7'),
+       ('Anh','7','10','9'),
     ]
 
-C.executemany("INSERT INTO TEST VALUES (?,?,?)", DB)
+C.executemany("INSERT INTO TEST VALUES (?,?,?,?)", DB)
 
 u.commit()
 C.execute("SELECT * FROM TEST")
-CD = C.fetchall()
+item = C.fetchall()
+A = 0
+print("\t"+T+"\t"+" | "+"\t"+TN+"\t"+" | "+"\t"+TH+"\t"+" | "+"\t"+AN)
+for item in item:
+    print("\t"+item[0]+"\t"+" | "+"\t"+ item[1]+ "\t"+" | "+"\t"+ item[2]+ "\t"+" | "+"\t"+ item[3])
+    print("\n---------------------------------------------------------------")
 
 
-print(T +" "+CD[1]+" | "+CD[2]+" | "+CD[3])
 
-print("\n------------------------------------------")
-
-print(CD[4]+" "+CD[5]+" | "+CD[6]+" | "+CD[7])
-
-print("\n------------------------------------------")
-
-print(CD[8]+" "+CD[9]+" | "+CD[10]+" | "+ CD[11])
-u.close()
 
 
